@@ -24,7 +24,7 @@ json-server --watch db.json --routes routes.json
 not return data in the correct format. Test your server by visiting this route
 in the browser:
 
-[http://localhost:3000/images/1](http://localhost:3000/images/1)
+[http://localhost:3000/images/1   ](http://localhost:3000/images/1)
 
 Then, open the `index.html` file on your browser to run the application.
 

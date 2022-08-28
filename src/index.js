@@ -6,6 +6,18 @@ document.addEventListener('DOMContentLoaded', () => {
     // Add the contents appropriately
     getImageData();
 
+    // Add an event listener to the like button - Increase likes
+    const likeButton = document.getElementById('like-button');
+    likeButton.addEventListener('click', () => {
+        const likes = document.getElementById('like-count')
+        const currentLikes = parseInt(likes.textContent.split(' ')[0], 10)
+
+        // Increase the image likes by 1 on every click
+        likes.textContent = currentLikes + 1 + ' likes'
+    })
+
+    // Post my comments
+    postComment()
 })
 
 // Function to fetch info about an image along with its content
@@ -56,29 +68,21 @@ function getImageData(){
     )
 }
 
-// Add an event listener to the button
-const likeButton = document.getElementById('like-button');
-likeButton.addEventListener('click', () => {
-    const likes = document.getElementById('like-count')
-    const currentLikes = parseInt(likes.textContent.split(' ')[0], 10)
-
-    // Increase the image likes by 1 on every click
-    likes.textContent = currentLikes + 1 + ' likes'
-})
-
 // Post a comment (My comments)
-const commentForm = document.querySelector('#comment-form')
-commentForm.addEventListener('submit', (event) => {
-    event.preventDefault()
-    // Grab comments section
-    const comments = document.getElementById('comments-list');
-
-    // Add the comment to the list of comments
-    let li = document.createElement('li');
-    li.textContent = event.target['comment'].value;
-    //append this to the comments
-    comments.appendChild(li);
-
-    //Reset form
-    commentForm.reset();
-})
+function postComment(){
+    const commentForm = document.querySelector('#comment-form')
+    commentForm.addEventListener('submit', (event) => {
+        event.preventDefault()
+        // Grab comments section
+        const comments = document.getElementById('comments-list');
+    
+        // Add the comment to the list of comments
+        let li = document.createElement('li');
+        li.textContent = event.target['comment'].value;
+        //append this to the comments
+        comments.appendChild(li);
+    
+        //Reset form
+        commentForm.reset();
+    })
+}
