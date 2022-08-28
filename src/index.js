@@ -18,6 +18,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Post my comments
     postComment()
+
+    // Delete comments on click
+    deleteComment()
 })
 
 // Function to fetch info about an image along with its content
@@ -86,3 +89,16 @@ function postComment(){
         commentForm.reset();
     })
 }
+
+// BONUS
+// // Create function to delete comment when clicked
+// function deleteComment(){
+//     const comments = document.getElementById('comments-list')
+//     const initialComments = comments.children;//get all comments
+//     for (let comment of initialComments){
+//         comment.addEventListener('click', (event) => { //listen to click event on comments
+//             //comments.removeChild(comment); //delete that comment
+//             console.log(event);
+//         })
+//     }
+// }
