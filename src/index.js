@@ -59,7 +59,11 @@ function getImageData(){
 // Add an event listener to the button
 const likeButton = document.getElementById('like-button');
 likeButton.addEventListener('click', () => {
-    console.log('I was clicked')
+    const likes = document.getElementById('like-count')
+    const currentLikes = parseInt(likes.textContent.split(' ')[0], 10)
+
+    // Increase the image likes by 1 on every click
+    likes.textContent = currentLikes + 1 + ' likes'
 })
 
 // Post a comment (My comments)
