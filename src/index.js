@@ -4,7 +4,8 @@
 document.addEventListener('DOMContentLoaded', () => {
     // Make a GET request to the host to retrieve its data
     // Add the contents appropriately
-    getImageData()
+    getImageData();
+
 })
 
 // Function to fetch info about an image along with its content
@@ -23,7 +24,54 @@ function getImageData(){
             const imgSource = result.image
             // Add this as the source of the image on the DOM
             const img = document.getElementById('card-image');
-            img[src] = imgSource;
+            img.src = imgSource;
+
+            // Get the initial likes
+            const initialLikes = result.likes;
+            // Add this to the likes section
+            const likes = document.getElementById('like-count')
+            likes.textContent = `${initialLikes} likes`
+
+            // Get server comments
+            const serverComments = result.comments;
+            // Remove initial comments
+            const comments = document.getElementById('comments-list')
+            //const initialComments = comments.children;
+            // for (let comment of initialComments){
+            //     //comments.removeChild(comment);
+            // }
+            
+            // .removeChild() doesn't remove one comment
+            // Let me force remove
+            comments.innerHTML = '';
+
+            // Add the comments to the comments section
+            for (let comment of serverComments){
+                let li = document.createElement('li')
+                li.textContent = comment.content;
+                //append this to the comments
+                comments.appendChild(li);
+            }
         })
     )
 }
+
+// Add an event listener to the button
+const likeButton = document.getElementById('like-button');
+likeButton.addEventListener('click', () => {
+    console.log('I was clicked')
+})
+
+// Post a comment (My comments)
+const commentButton = document.querySelector('.comment-button')
+commentButton.addEventListener('submit', (event) => {
+    event.preventDefault()
+    // Grab comments section
+    const comments = document.getElementById('comments-list')
+
+    // Add the comment to the list of comments
+    let li = document.createElement('li')
+    li.textContent = event.target['comment'].value;
+    //append this to the comments
+    comments.appendChild(li);
+})
