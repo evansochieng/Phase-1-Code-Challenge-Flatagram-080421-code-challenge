@@ -63,15 +63,18 @@ likeButton.addEventListener('click', () => {
 })
 
 // Post a comment (My comments)
-const commentButton = document.querySelector('.comment-button')
-commentButton.addEventListener('submit', (event) => {
+const commentForm = document.querySelector('#comment-form')
+commentForm.addEventListener('submit', (event) => {
     event.preventDefault()
     // Grab comments section
-    const comments = document.getElementById('comments-list')
+    const comments = document.getElementById('comments-list');
 
     // Add the comment to the list of comments
-    let li = document.createElement('li')
+    let li = document.createElement('li');
     li.textContent = event.target['comment'].value;
     //append this to the comments
     comments.appendChild(li);
+
+    //Reset form
+    commentForm.reset();
 })
